@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class Board extends JPanel implements KeyListener, ActionListener {
     Timer timer = new Timer(1, this);
     private int atisAdedi = 0;
-    private BufferedImage img;
+    private BufferedImage img, imgFace;
     public static ArrayList<Mermi> mermiler = new ArrayList<Mermi>();
     Target target = new Target();
     int kalanHak = 2;
@@ -36,6 +36,7 @@ public class Board extends JPanel implements KeyListener, ActionListener {
     public Board(){
         try {
             img = ImageIO.read(new FileImageInputStream(new File("C:\\Users\\Cüneyt\\IdeaProjects\\2DGame\\src\\rocket.png")));
+            imgFace = ImageIO.read(new FileImageInputStream(new File("C:\\Users\\Cüneyt\\IdeaProjects\\2DGame\\src\\face.png")));
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("YOK");
@@ -57,8 +58,9 @@ public class Board extends JPanel implements KeyListener, ActionListener {
         g2d.setTransform(id);
 
         for (int i = 0; i < target.hedefler.size(); i++){
-            g2d.setColor(Color.red);
-            g2d.fillOval((int)target.hedefler.get(i).getX(), (int)target.hedefler.get(i).getY(), 20, 20);
+           // g2d.setColor(Color.red);
+            //g2d.fillOval((int)target.hedefler.get(i).getX(), (int)target.hedefler.get(i).getY(), 20, 20);
+            g2d.drawImage(imgFace, (int)target.hedefler.get(i).getX(), (int)target.hedefler.get(i).getY(), img.getWidth() / 15 , img.getHeight() / 15, this);
         }
         if (this.hedefBittiMi){
             this.hedefBittiMi = false;
